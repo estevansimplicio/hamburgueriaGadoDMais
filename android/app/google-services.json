@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "735314759013",
+    "firebase_url": "https://hamburgueriagadodmais-d158a.firebaseio.com",
+    "project_id": "hamburgueriagadodmais-d158a",
+    "storage_bucket": "hamburgueriagadodmais-d158a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735314759013:android:72ce64bbb498bf0ea5e58c",
+        "android_client_info": {
+          "package_name": "com.example.hamburgueria_gado_dmais"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735314759013-lb369aojr756oosejqvjmg9keiu7rc5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkOuonRdvxqCY0Klfjn4kXMnqDkNgissU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735314759013-lb369aojr756oosejqvjmg9keiu7rc5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

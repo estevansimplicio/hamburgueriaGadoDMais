@@ -1,10 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hamburgueria_gado_dmais/pages/painel_administrativo.dart';
 import 'package:hamburgueria_gado_dmais/utils/nav.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
-
   final _tUsuario = TextEditingController();
   final _tSenha = TextEditingController();
 
@@ -33,12 +42,14 @@ class Login extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             TextFormField(
+
               validator: (String text) {
                 if (text.isEmpty) {
                   return "Digite o nome de Usuário";
                 }
                 return null;
               },
+
               controller: _tUsuario,
               style: TextStyle(fontSize: 30),
               decoration: InputDecoration(
@@ -50,7 +61,7 @@ class Login extends StatelessWidget {
                   ),
                   labelText: "Usuário",
                   labelStyle:
-                      TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
+                  TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
             ),
             SizedBox(
               height: 10,
@@ -73,7 +84,7 @@ class Login extends StatelessWidget {
                   ),
                   labelText: "Senha",
                   labelStyle:
-                      TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
+                  TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
               obscureText: true,
             ),
             SizedBox(
@@ -88,38 +99,60 @@ class Login extends StatelessWidget {
 
   _button(context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
-      height: 46,
-      child: RaisedButton(
-        color: Color(0xff3D3C3A),
-        child: Text(
-          "Entrar",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
-        ),
-        onPressed: () {
-          _onClickLogin(context);
-        }),
-      );
-
-  }
-
-   _onClickLogin(context) async{
-    if(!_formKey.currentState.validate()){
-      return;
+        margin: const EdgeInsets.only(top: 10),
+        height: 46,
+        child: RaisedButton(
+          color: Color(0xff3D3C3A),
+            child: Text(
+                "Entrar",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+            ),
+        onPressed: () async {
+          if (_formKey.currentState.validate()) {
+            _signInWithEmailAndPassword();
+          }
+        }
+    // _onClickLogin(context);
+    ),
+    );
     }
 
-    String usuario = _tUsuario.text;
-    String senha = _tSenha.text;
+    Future<void> _signInWithEmailAndPassword() async {
+      try{
+        final User user = (await _auth.signInWithEmailAndPassword(
+            email: _tUsuario.text,
+            password: _tSenha.text
+        ))
+            .user;
+        push(context, PainelAdministrativo(user : user,));
+      } catch (e) {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("Failed to sign in with Email & Password"),
+        ));
+      }
+    }
 
-    print("Usuário:  $usuario, Senha: $senha");
+  void _signOut() async {
+    await _auth.signOut();
+  }
 
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return PainelAdministrativo();
-    }));
+    // void _onClickLogin(context) async{
 
+    // if(!_formKey.currentState.validate()){
+    //
+    //   return;
+    // }
+
+
+    // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+    //   return PainelAdministrativo();
+    // }));
 
   }
-}
+
+
+
+

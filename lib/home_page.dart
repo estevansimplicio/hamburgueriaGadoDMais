@@ -1,11 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hamburgueria_gado_dmais/custom_key_icons_icons.dart';
+import 'package:hamburgueria_gado_dmais/main.dart';
 import 'package:hamburgueria_gado_dmais/pages/cardapio.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:hamburgueria_gado_dmais/pages/login.dart';
+import 'package:hamburgueria_gado_dmais/pages/painel_administrativo.dart';
 
 
 class HomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
