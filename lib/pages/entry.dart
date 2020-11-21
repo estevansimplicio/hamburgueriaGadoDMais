@@ -144,7 +144,6 @@ class _EntryScreenState extends State<EntryScreen> {
                   ),
             ),
 
-            // _buttonSave(),
 
             SizedBox(
               height: 10,
@@ -175,43 +174,5 @@ class _EntryScreenState extends State<EntryScreen> {
         ));
   }
 
-// _buttonSave() {
-//   return Container(
-//     margin: const EdgeInsets.only(top: 10),
-//     height: 46,
-//     child: RaisedButton(
-//         color: Color(0xff3D3C3A),
-//         child: Text(
-//           "Salvar",
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontSize: 20,
-//           ),
-//         ),
-//         onPressed: () {
-//           entryProvider.saveEntry();
-//         }
-//       // _onClickLogin(context);
-//     ),
-//   );
-// }
 
-// _buttonDelete() {
-//   return Container(
-//     margin: const EdgeInsets.only(top: 10),
-//     height: 46,
-//     child: RaisedButton(
-//         color: Color(0xff3D3C3A),
-//         child: Text(
-//           "Deletar",
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontSize: 20,
-//           ),
-//         ),
-//         onPressed: () {}
-//         // _onClickLogin(context);
-//         ),
-//   );
-// }
 }

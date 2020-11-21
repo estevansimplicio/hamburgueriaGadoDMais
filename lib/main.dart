@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            primaryColor: Colors.limeAccent
+            primaryColor: Color(0xff3D3C3A)
         ),
         home: HomePage(),
       ),

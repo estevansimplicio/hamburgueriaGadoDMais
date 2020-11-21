@@ -43,10 +43,13 @@ class _PainelAdministrativoState extends State<PainelAdministrativo> {
           backgroundColor: Color(0xff3D3C3A),
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        body: StreamBuilder<List<Entry>>(
+
+        body:
+        StreamBuilder<List<Entry>>(
           stream: entryProvider.entries,
           builder: (context, snapshot) {
             return ListView.builder(
+              padding: const EdgeInsets.only(top: 15),
               itemCount: snapshot.data.length,
               itemBuilder: (context,index){
                 return ListTile(
@@ -55,6 +58,8 @@ class _PainelAdministrativoState extends State<PainelAdministrativo> {
                       color: Color(0xff3D3C3A),
                   ),
                   title: Text(snapshot.data[index].nome),
+                  subtitle: Text(snapshot.data[index].descricao),
+
                   onTap: (){
                     push(context, EntryScreen(entry: snapshot.data[index],));
                 },
@@ -71,36 +76,7 @@ class _PainelAdministrativoState extends State<PainelAdministrativo> {
         ));
   }
 
-  // _body() {
-  //   return Scaffold(
-  //     body: Container(
-  //       width: double.infinity,
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         crossAxisAlignment: CrossAxisAlignment.center,
-  //         children: [
-  //           Container(
-  //             child: Text(
-  //               "Olívia",
-  //               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-  //             ),
-  //           ),
-  //           // Container(
-  //           //   child: OutlineButton(
-  //           //     child: Text("LOGOUT"),
-  //           //     onPressed: () {
-  //           //       _signOut().whenComplete(() {
-  //           //         Navigator.of(context).pushReplacement(MaterialPageRoute(
-  //           //             builder: (context) => HomePage()));
-  //           //       });
-  //           //     },
-  //           //   ),
-  //           // ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+
 
   Future _signOut() async {
     await _auth.signOut();
