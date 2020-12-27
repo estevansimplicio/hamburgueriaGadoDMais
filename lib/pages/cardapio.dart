@@ -1,11 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hamburgueria_gado_dmais/custom_return_icon_icons.dart';
-import 'package:hamburgueria_gado_dmais/models/entry.dart';
-import 'package:hamburgueria_gado_dmais/pages/entry.dart';
-import 'package:hamburgueria_gado_dmais/providers/entry_provider.dart';
-import 'package:hamburgueria_gado_dmais/utils/nav.dart';
-import 'package:provider/provider.dart';
 
 class Cardapio extends StatelessWidget {
   @override
@@ -13,7 +8,7 @@ class Cardapio extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xff3D3C3A),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(155.0), // here the desired height
+        preferredSize: Size.fromHeight(165.0), // here the desired height
         child: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0,
@@ -43,7 +38,9 @@ class Cardapio extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white,
                                 // color: Color(0xffF9CC1C),
-                                fontSize: 17
+                                fontSize: 17,
+                                fontStyle: FontStyle.italic
+
                             ),
                           )),
                       Container(
@@ -53,7 +50,8 @@ class Cardapio extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white,
                                 // color: Color(0xffF9CC1C),
-                                fontSize: 17
+                                fontSize: 17,
+                                fontStyle: FontStyle.italic
                             ),
                           ))
                     ],
@@ -99,10 +97,10 @@ class Cardapio extends StatelessWidget {
 
   _logo() {
     return Container(
-      margin: const EdgeInsets.only(top: 5, left: 50, bottom: 0),
+      margin: const EdgeInsets.only(top: 35, left: 80, bottom: 10),
       child: Image.asset(
         "assets/images/Logo_sem_borda.png",
-        width: 150,
+        width: 90,
       ),
     );
   }

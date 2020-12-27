@@ -1,5 +1,3 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hamburgueria_gado_dmais/home_page.dart';
@@ -27,7 +25,7 @@ class _PainelAdministrativoState extends State<PainelAdministrativo> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Painel Administrativo",
+            "Painel Admin.",
             style: TextStyle(color: Colors.white),
           ),
           actions: <Widget>[
@@ -38,35 +36,33 @@ class _PainelAdministrativoState extends State<PainelAdministrativo> {
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => HomePage()));
                   });
-                })
+                }),
           ],
           backgroundColor: Color(0xff3D3C3A),
           iconTheme: IconThemeData(color: Colors.white),
         ),
-
-        body:
-        StreamBuilder<List<Entry>>(
-          stream: entryProvider.entries,
-          builder: (context, snapshot) {
-            return ListView.builder(
-              padding: const EdgeInsets.only(top: 15),
-              itemCount: snapshot.data.length,
-              itemBuilder: (context,index){
-                return ListTile(
-                  trailing: Icon(
-                      Icons.edit,
-                      color: Color(0xff3D3C3A),
-                  ),
-                  title: Text(snapshot.data[index].nome),
-                  subtitle: Text(snapshot.data[index].descricao),
-
-                  onTap: (){
-                    push(context, EntryScreen(entry: snapshot.data[index],));
-                },
-                );
-            });
-          }
-        ),
+        body: StreamBuilder<List<Entry>>(
+            stream: entryProvider.entries,
+            builder: (context, snapshot) {
+              return ListView.builder(
+                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(snapshot.data[index].nome,
+                          style: TextStyle(fontSize: 20)),
+                      subtitle: Text(snapshot.data[index].descricao,
+                          style: TextStyle(fontSize: 15)),
+                      onTap: () {
+                        push(
+                            context,
+                            EntryScreen(
+                              entry: snapshot.data[index],
+                            ));
+                      },
+                    );
+                  });
+            }),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color(0xff3D3C3A),
           child: Icon(Icons.add),
@@ -76,10 +72,7 @@ class _PainelAdministrativoState extends State<PainelAdministrativo> {
         ));
   }
 
-
-
   Future _signOut() async {
     await _auth.signOut();
   }
-
 }

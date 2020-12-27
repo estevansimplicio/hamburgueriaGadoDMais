@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hamburgueria_gado_dmais/pages/painel_administrativo.dart';
 import 'package:hamburgueria_gado_dmais/utils/nav.dart';
@@ -22,7 +21,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Painel Administrativo",
+          "Painel Admin.",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xff3D3C3A),
@@ -139,17 +138,7 @@ class _LoginState extends State<Login> {
     await _auth.signOut();
   }
 
-    // void _onClickLogin(context) async{
 
-    // if(!_formKey.currentState.validate()){
-    //
-    //   return;
-    // }
-
-
-    // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-    //   return PainelAdministrativo();
-    // }));
 
   }
 

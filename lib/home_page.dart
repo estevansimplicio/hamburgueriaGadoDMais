@@ -1,11 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hamburgueria_gado_dmais/custom_key_icons_icons.dart';
-import 'package:hamburgueria_gado_dmais/main.dart';
 import 'package:hamburgueria_gado_dmais/pages/cardapio.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:hamburgueria_gado_dmais/pages/login.dart';
-import 'package:hamburgueria_gado_dmais/pages/painel_administrativo.dart';
+import 'package:hamburgueria_gado_dmais/pages/pedido.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -27,7 +25,7 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           _img(),
           _button(context),
-          _button2(),
+          _button2(context),
           _key(context),
         ],
       ),
@@ -69,7 +67,7 @@ class HomePage extends StatelessWidget {
     }));
   }
 
-  _button2() {
+  _button2(context) {
     return Container(
         margin: const EdgeInsets.only(top: 15),
         child: FlatButton(
@@ -83,7 +81,8 @@ class HomePage extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 17),
           ),
           onPressed: () {
-            FlutterOpenWhatsapp.sendSingleMessage("5511944802018", "");
+            _onClickButton3(context);
+             // FlutterOpenWhatsapp.sendSingleMessage("5511944802018", "");
           },
         ));
   }
@@ -106,6 +105,12 @@ class HomePage extends StatelessWidget {
   void _onClickButton2(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return Login();
+    }));
+  }
+
+  void _onClickButton3(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return Pedido();
     }));
   }
 

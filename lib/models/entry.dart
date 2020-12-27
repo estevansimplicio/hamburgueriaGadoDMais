@@ -10,6 +10,7 @@ class Entry{
   final String nome;
   final String descricao;
   final String preco;
+  // bool selecionado;
 
   Entry({@required this.entryId, this.nome, this.descricao, this.preco});
 
@@ -18,7 +19,8 @@ class Entry{
       entryId: json["entryId"],
       nome: json["nome"],
       descricao: json["descricao"],
-      preco: json["preco"]
+      preco: json["preco"],
+      // selecionado: json["selecionado"]
     );
   }
 
@@ -27,7 +29,8 @@ class Entry{
       "entryId": entryId,
       "nome": nome,
       "descricao": descricao,
-      "preco": preco
+      "preco": preco,
+      // "selecionado": selecionado
     };
   }
 

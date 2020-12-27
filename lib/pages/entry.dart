@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hamburgueria_gado_dmais/models/entry.dart';
 import 'package:hamburgueria_gado_dmais/providers/entry_provider.dart';

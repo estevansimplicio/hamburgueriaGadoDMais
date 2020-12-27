@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:decimal/decimal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hamburgueria_gado_dmais/models/entry.dart';
 import 'package:hamburgueria_gado_dmais/service/firestore_service.dart';
@@ -13,6 +10,7 @@ class EntryProvider with ChangeNotifier{
   String _nome;
   String _descricao;
   String _preco;
+  // bool _selecionado;
   var uuid = Uuid();
 
 
@@ -20,6 +18,7 @@ class EntryProvider with ChangeNotifier{
   String get nome => _nome;
   String get descricao => _descricao;
   String get preco => _preco;
+  // bool get selecionado => _selecionado;
 
   Stream<List<Entry>> get entries => firestoreService.getEntries();
 
@@ -39,6 +38,11 @@ class EntryProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  // set changeSelecionado(bool selecionado){
+  //   _selecionado = selecionado;
+  //   notifyListeners();
+  // }
+
   //functions
   loadAll(Entry entry){
     if(entry != null){
@@ -46,11 +50,13 @@ class EntryProvider with ChangeNotifier{
       _descricao = entry.descricao;
       _preco = entry.preco;
       _entryId = entry.entryId;
+      // _selecionado = entry.selecionado;
     } else {
       _nome = null;
       _descricao = null;
       _preco = null;
       _entryId = null;
+      // _selecionado = null;
     }
   }
 
