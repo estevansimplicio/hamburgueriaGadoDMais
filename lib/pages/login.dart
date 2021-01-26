@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
 
               validator: (String text) {
                 if (text.isEmpty) {
-                  return "Digite o nome de Usuário";
+                  return "Digite o e-mail";
                 }
                 return null;
               },
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Color(0xff3D3C3A)),
                   ),
-                  labelText: "Usuário",
+                  labelText: "E-mail",
                   labelStyle:
                   TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
             ),

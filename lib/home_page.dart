@@ -3,7 +3,6 @@ import 'package:hamburgueria_gado_dmais/custom_key_icons_icons.dart';
 import 'package:hamburgueria_gado_dmais/pages/cardapio.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:hamburgueria_gado_dmais/pages/login.dart';
-import 'package:hamburgueria_gado_dmais/pages/pedido.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -110,7 +109,7 @@ class HomePage extends StatelessWidget {
 
   void _onClickButton3(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Pedido();
+      return Cardapio();
     }));
   }
 

@@ -1,8 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:hamburgueria_gado_dmais/custom_return_icon_icons.dart';
+import 'package:hamburgueria_gado_dmais/utils/nav.dart';
 
-class Cardapio extends StatelessWidget {
+class Cardapio extends StatefulWidget {
+  @override
+  _CardapioState createState() => _CardapioState();
+}
+
+class _CardapioState extends State<Cardapio> {
+  TextEditingController controllerQuantidade = TextEditingController();
+  TextEditingController controllerEndereco = TextEditingController();
+  TextEditingController controllerPagamento = TextEditingController();
+  TextEditingController controllerInfoAdicional = TextEditingController();
+  GlobalKey<FormState> form = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    controllerQuantidade.text = "1";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +83,243 @@ class Cardapio extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text(
+                            ""+document["nome"]+"",
+                            textAlign: TextAlign.center),
+                          content: Form(
+                            key: form,
+                              child: ListView(
+                                children: [
+                                  Container(
+                                    child: Row(
+                                      children: <Widget>[
+                                        InkWell(
+                                          child: Icon(
+                                            Icons.remove_circle_outline,
+                                            size: 35.0,
+                                          ),
+                                          onTap: () {
+                                            int currentValue =
+                                            int.parse(controllerQuantidade.text);
+                                            setState(() {
+                                              currentValue--;
+                                              controllerQuantidade.text =
+                                                  (currentValue > 0 ? currentValue : 0)
+                                                      .toString(); // decrementing value
+                                            });
+                                          },
+                                        ),
+
+                                        Container(
+                                          width: 137,
+                                            margin: const EdgeInsets.only(left: 10, top: 10),
+                                            child: Container(
+                                              child: TextFormField(
+                                                readOnly: true,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 20),
+                                                decoration: InputDecoration(
+                                                    enabledBorder: OutlineInputBorder(
+                                                      borderSide:
+                                                      BorderSide(color: Color(0xff3D3C3A)),
+                                                    ),
+                                                    focusedBorder: OutlineInputBorder(
+                                                      borderSide:
+                                                      BorderSide(color: Color(0xff3D3C3A)),
+                                                    ),
+                                                    isDense: true,
+                                                    labelText: "Quantidade",
+                                                    labelStyle: TextStyle(
+                                                        color: Color(0xff3D3C3A), fontSize: 20)),
+                                                controller: controllerQuantidade,
+                                                keyboardType: TextInputType.numberWithOptions(
+                                                  decimal: false,
+                                                ),
+                                                inputFormatters: <TextInputFormatter>[
+                                                  FilteringTextInputFormatter.digitsOnly
+                                                ],
+                                              ),
+                                            )),
+
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+
+                                        Container(
+                                            height: 50.0,
+                                            child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Container(
+                                                  // decoration: BoxDecoration(
+                                                  //   border: Border(
+                                                  //     bottom: BorderSide(
+                                                  //       color: Colors.black,
+                                                  //       width: 1.0
+                                                  //     )
+                                                  //   )
+                                                  // ),
+
+
+
+                                                  child: InkWell(
+
+
+                                                    child: Icon(
+                                                      Icons.add_circle_outline,
+                                                      size: 35.0,
+                                                    ),
+                                                    onTap: () {
+                                                      int currentValue =
+                                                      int.parse(controllerQuantidade.text);
+                                                      setState(() {
+                                                        currentValue++;
+                                                        controllerQuantidade.text = (currentValue)
+                                                            .toString(); // incrementing value
+                                                      });
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            )),
+                                      ],
+                                    ),
+
+
+                                  ),
+
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+
+                                  Container(
+                                      child: Container(
+                                        child: TextFormField(
+                                          style: TextStyle(fontSize: 20),
+                                          decoration: InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Color(0xff3D3C3A)),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Color(0xff3D3C3A)),
+                                              ),
+                                              labelText: "Endereço de entrega",
+                                              floatingLabelBehavior:FloatingLabelBehavior.always,
+                                              isDense: true,
+                                              labelStyle:
+                                              TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
+                                          controller: controllerEndereco,
+                                            // ignore: missing_return
+                                            validator: (value){
+                                              if (value.isEmpty) {
+                                                return 'Informe o endereço';
+                                              }
+
+                                            }
+                                        ),
+                                      )),
+
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+
+                                  Container(
+                                      child: Container(
+                                        child: TextFormField(
+                                            style: TextStyle(fontSize: 20),
+                                            decoration: InputDecoration(
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Color(0xff3D3C3A)),
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Color(0xff3D3C3A)),
+                                                ),
+                                                hintText: "Cartão ou dinheiro",
+                                                hintStyle: TextStyle(
+                                                  fontSize: 13
+                                                ),
+                                                labelText: "Forma de pagamento",
+                                                floatingLabelBehavior:FloatingLabelBehavior.always,
+                                                isDense: true,
+                                                labelStyle:
+                                                TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
+                                            controller: controllerPagamento,
+                                            // ignore: missing_return
+                                            validator: (value){
+                                              if (value.isEmpty) {
+                                                return 'Informe a forma de pagamento';
+                                              }
+
+                                            }
+                                        ),
+                                      )),
+
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+
+                                  Container(
+                                      child: Container(
+                                        child: TextFormField(
+                                          maxLines: 4,
+                                            style: TextStyle(fontSize: 20),
+                                            decoration: InputDecoration(
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Color(0xff3D3C3A)),
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Color(0xff3D3C3A)),
+                                                ),
+                                                hintText: "Troco necessário, ingredientes indesejados, etc",
+                                                hintStyle: TextStyle(
+                                                    fontSize: 13
+                                                ),
+                                                labelText: "Informações adicionais",
+                                                floatingLabelBehavior:FloatingLabelBehavior.always,
+                                                isDense: true,
+                                                labelStyle:
+                                                TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
+                                            controller: controllerInfoAdicional,
+                                        ),
+                                      )),
+
+                                ],
+                              )),
+                          actions: <Widget>[
+                            FlatButton(
+                                child: Text("Cancelar", style: TextStyle(color: Color(0xff3D3C3A)),),
+                                onPressed: () => Navigator.of(context).pop(),
+                            ),
+
+                            FlatButton(
+                                child: Text("Enviar"),
+                                onPressed: () {
+                                  FlutterOpenWhatsapp.sendSingleMessage(
+                                      "5511944802018",
+                                      "Boa noite, gostaria de pedir "+controllerQuantidade.text+" "+ document["nome"]+" \n "
+                                          "\nEndereço: "+controllerEndereco.text+"\n "
+                                          "\nForma de pagamento: "+controllerPagamento.text+"\n "
+                                          "\nInformações adicionais: "+controllerInfoAdicional.text+"."
+                                  );
+                        },
+                                color: Color(0xff3D3C3A)
+
+                            )
+                          ],
+                        );
+                      }
+                    );
+
+                    // FlutterOpenWhatsapp.sendSingleMessage("5511944802018", "Olá, gostaria de pedir um "+ document["nome"]+".");
+                  },
+
                 );
               }).toList(),
             );
