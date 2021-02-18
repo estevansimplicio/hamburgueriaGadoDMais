@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:hamburgueria_gado_dmais/custom_return_icon_icons.dart';
-import 'package:hamburgueria_gado_dmais/utils/nav.dart';
 
 class Cardapio extends StatefulWidget {
   @override
@@ -166,12 +165,7 @@ class _CardapioState extends State<Cardapio> {
                                                   //     )
                                                   //   )
                                                   // ),
-
-
-
                                                   child: InkWell(
-
-
                                                     child: Icon(
                                                       Icons.add_circle_outline,
                                                       size: 35.0,
@@ -216,12 +210,11 @@ class _CardapioState extends State<Cardapio> {
                                               labelStyle:
                                               TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
                                           controller: controllerEndereco,
-                                            // ignore: missing_return
                                             validator: (value){
                                               if (value.isEmpty) {
                                                 return 'Informe o endereço';
                                               }
-
+                                              return null;
                                             }
                                         ),
                                       )),
@@ -251,12 +244,11 @@ class _CardapioState extends State<Cardapio> {
                                                 labelStyle:
                                                 TextStyle(color: Color(0xff3D3C3A), fontSize: 20)),
                                             controller: controllerPagamento,
-                                            // ignore: missing_return
                                             validator: (value){
                                               if (value.isEmpty) {
                                                 return 'Informe a forma de pagamento';
                                               }
-
+                                              return null;
                                             }
                                         ),
                                       )),
@@ -295,7 +287,10 @@ class _CardapioState extends State<Cardapio> {
                           actions: <Widget>[
                             FlatButton(
                                 child: Text("Cancelar", style: TextStyle(color: Color(0xff3D3C3A)),),
-                                onPressed: () => Navigator.of(context).pop(),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  controllerQuantidade.text = "1";
+                                }
                             ),
 
                             FlatButton(
@@ -308,6 +303,7 @@ class _CardapioState extends State<Cardapio> {
                                           "\nForma de pagamento: "+controllerPagamento.text+"\n "
                                           "\nInformações adicionais: "+controllerInfoAdicional.text+"."
                                   );
+                                  controllerQuantidade.text = "1";
                         },
                                 color: Color(0xff3D3C3A)
 

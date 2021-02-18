@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hamburgueria_gado_dmais/custom_key_icons_icons.dart';
+import 'package:hamburgueria_gado_dmais/novos_icones_icons.dart';
 import 'package:hamburgueria_gado_dmais/pages/cardapio.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:hamburgueria_gado_dmais/pages/login.dart';
 
 
@@ -22,10 +23,12 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          _key(context),
           _img(),
           _button(context),
-          _button2(context),
-          _key(context),
+          _texto(),
+          // _button2(context),
+
         ],
       ),
     );
@@ -33,17 +36,17 @@ class HomePage extends StatelessWidget {
 
   _img() {
     return Container(
-      margin: const EdgeInsets.only(top: 60),
+      margin: const EdgeInsets.only(top: 0),
       child: Image.asset(
         "assets/images/Logo.png",
-        width: 300,
+        width: 290,
       ),
     );
   }
 
   _button(context) {
     return Container(
-      margin: const EdgeInsets.only(top: 60),
+      margin: const EdgeInsets.only(top: 50),
       child: FlatButton(
           padding:
               const EdgeInsets.only(top: 15, bottom: 15, left: 45, right: 45),
@@ -52,7 +55,7 @@ class HomePage extends StatelessWidget {
           color: Color(0xff292929),
           child: Text(
             "NOSSO CARDÁPIO",
-            style: TextStyle(color: Colors.white, fontSize: 17),
+            style: GoogleFonts.aBeeZee(textStyle: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),)
           ),
           onPressed: () {
             _onClickButton(context);
@@ -66,34 +69,35 @@ class HomePage extends StatelessWidget {
     }));
   }
 
-  _button2(context) {
-    return Container(
-        margin: const EdgeInsets.only(top: 15),
-        child: FlatButton(
-          padding:
-              const EdgeInsets.only(top: 15, bottom: 15, left: 45, right: 45),
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(15.0)),
-          color: Color(0xff292929),
-          child: Text(
-            "FAÇA SEU PEDIDO",
-            style: TextStyle(color: Colors.white, fontSize: 17),
-          ),
-          onPressed: () {
-            _onClickButton3(context);
-             // FlutterOpenWhatsapp.sendSingleMessage("5511944802018", "");
-          },
-        ));
-  }
+  // _button2(context) {
+  //   return Container(
+  //       margin: const EdgeInsets.only(top: 15),
+  //       child: FlatButton(
+  //         padding:
+  //             const EdgeInsets.only(top: 15, bottom: 15, left: 45, right: 45),
+  //         shape: new RoundedRectangleBorder(
+  //             borderRadius: new BorderRadius.circular(15.0)),
+  //         color: Color(0xff292929),
+  //         child: Text(
+  //           "FAÇA SEU PEDIDO",
+  //           style: TextStyle(color: Colors.white, fontSize: 17),
+  //         ),
+  //         onPressed: () {
+  //           _onClickButton3(context);
+  //            // FlutterOpenWhatsapp.sendSingleMessage("5511944802018", "");
+  //         },
+  //       ));
+  // }
 
   _key(context) {
     return Container(
-      margin: const EdgeInsets.only(top: 90),
+      alignment: Alignment.topRight,
+      margin: const EdgeInsets.only(top: 30, right: 10),
       child: IconButton(
           icon: Icon(
-            CustomKeyIcons.key_1,
+            NovosIcones.user_shield,
             color: Color(0xff292929),
-            size: 21,
+            size: 18,
           ),
           onPressed: () {
             _onClickButton2(context);
@@ -107,11 +111,78 @@ class HomePage extends StatelessWidget {
     }));
   }
 
-  void _onClickButton3(context) {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Cardapio();
-    }));
+  _texto() {
+    return Container(
+      padding: const EdgeInsets.only(top: 90),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: IconButton(
+                  icon: Icon(
+                    NovosIcones.facebook_f,
+                    color: Color(0xff292929),
+                    size: 15,
+                  ),
+
+                ),
+              ),
+              Center(
+                child: IconButton(
+                  icon: Icon(
+                    NovosIcones.instagram,
+                    color: Color(0xff292929),
+                    size: 15,
+                  ),
+
+                ),
+
+              ),
+
+
+            ],
+          ),
+
+          Center(
+            child: Text(
+                "@gadodemaishamburgueria",
+                style: GoogleFonts.aBeeZee(
+                  textStyle: TextStyle(
+                      color: Color(0xff292929),
+                      // fontStyle: FontStyle.italic,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold
+                  ),
+                )
+            ),
+          )
+
+
+          // Text(
+          //     "@gadodemaishamburgueria",
+          //     style: GoogleFonts.aBeeZee(
+          //       textStyle: TextStyle(
+          //           color: Color(0xff292929),
+          //           // fontStyle: FontStyle.italic,
+          //           fontSize: 15,
+          //           fontWeight: FontWeight.bold
+          //       ),
+          //     )
+          // ),
+
+        ],
+      )
+    );
   }
+
+
+  // void _onClickButton3(context) {
+  //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+  //     return Cardapio();
+  //   }));
+  // }
 
 
 }

@@ -40,7 +40,9 @@ dependencies:
 
   uuid: ^2.2.2
 
-  google_fonts: ^1.1.1
+  google_fonts: ^1.1.2
+
+
 
 
 
@@ -97,6 +99,10 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 
   fonts:
+    - family: NovosIcones
+      fonts:
+        - asset: fonts/NovosIcones.ttf
+
     - family: CustomKeyIcons
       fonts:
         - asset: fonts/CustomKeyIcons.ttf
@@ -104,3 +110,4 @@ flutter:
     - family: CustomReturnIcon
       fonts:
           - asset: fonts/CustomReturnIcon.ttf
+
