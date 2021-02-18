@@ -128,9 +128,25 @@ class _LoginState extends State<Login> {
             .user;
         push(context, PainelAdministrativo(user : user,));
       } catch (e) {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text("Failed to sign in with Email & Password"),
-        ));
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Falha no login"),
+                content: Text("E-mail ou senha incorretos."),
+                actions: [
+                  FlatButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            });
+        // Scaffold.of(context).showSnackBar(SnackBar(
+        //   content: Text("E-mail ou senha incorretos."),
+        // ));
       }
     }
 

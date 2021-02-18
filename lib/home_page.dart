@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hamburgueria_gado_dmais/custom_key_icons_icons.dart';
 import 'package:hamburgueria_gado_dmais/novos_icones_icons.dart';
 import 'package:hamburgueria_gado_dmais/pages/cardapio.dart';
 import 'package:hamburgueria_gado_dmais/pages/login.dart';
@@ -28,7 +27,6 @@ class HomePage extends StatelessWidget {
           _button(context),
           _texto(),
           // _button2(context),
-
         ],
       ),
     );
@@ -126,7 +124,6 @@ class HomePage extends StatelessWidget {
                     color: Color(0xff292929),
                     size: 15,
                   ),
-
                 ),
               ),
               Center(
@@ -136,12 +133,8 @@ class HomePage extends StatelessWidget {
                     color: Color(0xff292929),
                     size: 15,
                   ),
-
                 ),
-
               ),
-
-
             ],
           ),
 
@@ -158,31 +151,15 @@ class HomePage extends StatelessWidget {
                 )
             ),
           )
-
-
-          // Text(
-          //     "@gadodemaishamburgueria",
-          //     style: GoogleFonts.aBeeZee(
-          //       textStyle: TextStyle(
-          //           color: Color(0xff292929),
-          //           // fontStyle: FontStyle.italic,
-          //           fontSize: 15,
-          //           fontWeight: FontWeight.bold
-          //       ),
-          //     )
-          // ),
-
         ],
       )
     );
   }
-
 
   // void _onClickButton3(context) {
   //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
   //     return Cardapio();
   //   }));
   // }
-
 
 }
