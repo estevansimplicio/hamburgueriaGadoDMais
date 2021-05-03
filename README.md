@@ -4,7 +4,7 @@ Projeto de TCC referente ao curso de Tecnologia em Sistemas para Internet pelo I
 
 Aplicativo Mobile de cardápio digital e pedidos integrado ao Whatsapp para a Hamburgueria Gado D+. 
 
-
+Implementado utilizando o Framework Flutter com a linguagem de programação Dart, conjuntamente ao Google Firebase para implementação das funcionalidades de armazenamento de dados e autenticação de usuário.
 .
 
 Home page
